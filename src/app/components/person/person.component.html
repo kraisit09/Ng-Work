@@ -1,0 +1,24 @@
+<div><h3>Person: Kraisit.ch</h3></div>
+<hr />
+<div>
+  Weight:
+  <input type="number" [(ngModel)]="currPerson.weight" /> kg
+</div>
+<div>
+  Weight:
+  <input type="range" min="20" max="150" [(ngModel)]="currPerson.weight" /> kg
+</div>
+<br />
+<div>Height: <input type="number" [(ngModel)]="currPerson.height" /> cm</div>
+<div>
+  Height:
+  <input type="range" min="100" max="200" [(ngModel)]="currPerson.height" /> cm
+</div>
+<hr />
+<div>BMI: {{ currPerson.bmi | number: "1.2-2" }}</div>
+<div>Category: {{ currPerson.category }}</div>
+<hr />
+das
+<!-- <div *ngFor="let a of currPerson">
+  {{ a.height }}
+</div> -->

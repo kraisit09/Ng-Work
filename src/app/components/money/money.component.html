@@ -1,0 +1,8 @@
+<span
+  [class.text-success]="value > 0"
+  [class.text-danger]="value < 0"
+  [class.text-bold]="true"
+>
+  {{ symbol }}
+  {{ value | number: numberFormat() }}</span
+>

@@ -1,0 +1,8 @@
+<div>
+  Open:
+  <input type="number" [(ngModel)]="candle.open" />
+  {{ candle.open }}
+</div>
+<div>Close: {{ candle.close }}</div>
+
+<div [ngClass]="clsForCandle()">Color: {{ candle.color }}</div>

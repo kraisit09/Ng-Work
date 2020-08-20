@@ -1,0 +1,7 @@
+<div *ngIf="album">
+  <h5>AlbumName: {{ album.name }}</h5>
+
+  <div *ngFor="let s of album.songs">
+    <app-song [song]="s"></app-song>
+  </div>
+</div>

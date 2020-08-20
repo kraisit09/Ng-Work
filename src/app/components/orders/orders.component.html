@@ -1,0 +1,93 @@
+<div>
+  <select [(ngModel)]="selectedPortfolios">
+    <option [ngValue]="p" *ngFor="let p of portfolios">
+      {{ p.name }}
+    </option>
+  </select>
+</div>
+<div *ngIf="selectedPortfolios">
+  Initial Cash:
+  {{ selectedPortfolios.initialCash | number: "1.2-2" }} THB
+</div>
+<div class="my-2">
+  Id:
+  <input
+    type="number"
+    class="form-control mb-1"
+    [(ngModel)]="tempOrder.id"
+    min="0"
+  />
+  PriceBTC:
+  <input
+    type="number"
+    class="form-control mb-1"
+    [(ngModel)]="tempOrder.priceBTC"
+    min="0"
+    step="10000"
+  />
+  VolumeBTC:
+  <input
+    type="number"
+    class="form-control mb-1"
+    [(ngModel)]="tempOrder.volumeBTC"
+    min="0"
+    step="0.001"
+  />
+  <div class="btn-group">
+    <button
+      class="btn btn-outline-success px-5"
+      name="buy"
+      (click)="evOnClick($event.target)"
+    >
+      Buy
+    </button>
+    <button
+      class="btn btn-outline-danger px-5"
+      name="sell"
+      (click)="evOnClick($event.target)"
+    >
+      Sell
+    </button>
+  </div>
+</div>
+<table class="table table-hover table-sm" *ngIf="selectedPortfolios">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Side</th>
+      <th>Price(BTC)</th>
+      <th>Volume(BTC)</th>
+      <th>Price(THB)</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of selectedPortfolios.orders">
+      <td>{{ o.id }}</td>
+      <td>{{ o.side }}</td>
+      <td>
+        <input type="number" [(ngModel)]="o.priceBTC" min="0" step="1000" />
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="o.volumeBTC" min="0" step="0.001" />
+      </td>
+      <td class="text-right">
+        <app-money
+          [value]="o.thaiBaht"
+          [decimalPlaces]="4"
+          symbol="฿"
+          [bold]="true"
+        ></app-money>
+      </td>
+      <td>
+        <button class="btn btn-link" (click)="remove(o)">
+          <fa-icon [icon]="faTrash" class="text-dark"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="selectedPortfolios">
+  Balance: {{ selectedPortfolios.balanceTHB }} THB Balance:
+  {{ selectedPortfolios.balanceBTC }} BTC
+</div>
